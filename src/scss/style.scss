@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.templateRow {
+  content: "";
+  display: table;
+}
+
+.row {
+  &:before {
+    @extend .templateRow;
+  }
+
+  &:after {
+    @extend .templateRow;
+    clear: both;
+  }
+}
+
+[class*="col-"] {
+  min-height: 7px;
+  padding: 12px;
+  float: left;
+  text-align: center;
+}
+@function anchoColumnas($columns) {
+   @return percentage(($columns/12));
+}
+@for $numeroColumna from 1 through 12 {
+  .col-#{$numeroColumna} {
+    width: anchoColumnas($numeroColumna);
+  }
+}
+@import "variables";
+
+html {
+  background-color: $background-rojo;
+}
+
+img {
+  @extend .redondo;
+  max-width: 100%;
+  height: 190px;
+}
+
+.botones-nav {
+  float: right;
+}
+
+.redondo {
+  border-radius: 40%;
+}
+
+.navegador {
+  background-image: url(../img/mario-bros.gif);
+  background-color: $color-azul;
+  background-repeat:round;
+  background-size:cover;
+  height: 170px;
+
+}
+
+.btn {
+  @extend .redondo;
+  padding: 12px 15px;
+  background: $background-rojo;
+  font: 700 13px/18px Helvetica, arial;
+  text-align: center;
+
+  &:hover {
+    transform: translateX(10px) rotate(10deg) translateY(5px);
+  }
+}
+
+.btn--state {
+  color: $color-letras-blanca;
+  background: $color-amarillo;
+  border-color: #4A993E;
+}
+
+.seccion-h {
+  font-family: 'Acme', sans-serif;
+  line-height: 20px;
+  margin: 20px;
+}
+
+.seccion-h--principal {
+  font-size: 35px;
+}
+
+.seccion-h--principal_h3 {
+  font-size: 25px;
+  text-align: justify;
+}
+
+.seccion-h--principal_h4 {
+  font-size: 23px;
+  line-height: 25px;
+}
+
+.parrafo {
+  text-align: justify;
+  font-size: 18px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.footer {
+  @extend .seccion-h;
+  background: $color-azul;
+}
